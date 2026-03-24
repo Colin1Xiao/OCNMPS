@@ -1,21 +1,24 @@
 # 🚀 OCNMPS
 
-**OpenClaw AI Model Router** | OpenClaw AI 模型路由器
-
----
-
-<p align="center">
-  <img src="https://img.shields.io/badge/version-1.5.0-blue" alt="Version">
-  <img src="https://img.shields.io/badge/python-3.9+-green" alt="Python">
-  <img src="https://img.shields.io/badge/license-MIT-yellow" alt="License">
-  <img src="https://img.shields.io/badge/status-production%20ready-brightgreen" alt="Status">
-</p>
+> **Smart AI Model Router for OpenClaw**  
+> **OpenClaw 智能 AI 模型路由器**
 
 <p align="center">
-  <strong>English</strong> | <a href="#中文">中文</a>
+  <img src="https://img.shields.io/badge/version-1.5.0-blue?style=for-the-badge" alt="Version">
+  <img src="https://img.shields.io/badge/python-3.9+-green?style=for-the-badge" alt="Python">
+  <img src="https://img.shields.io/badge/license-MIT-yellow?style=for-the-badge" alt="License">
+  <img src="https://img.shields.io/badge/status-production%20ready-brightgreen?style=for-the-badge" alt="Status">
 </p>
 
 ---
+
+## 🌐 Language | 语言
+
+**[🇺🇸 English](#english)** | **[🇨🇳 中文](#中文)**
+
+---
+
+# 🇺🇸 English
 
 ## 📖 What is OCNMPS?
 
@@ -143,60 +146,7 @@ File: `~/.openclaw/plugins/ocnmps-router/ocnmps_plugin_config.json`
 ## 🔧 How It Works
 
 ```
-┌─────────────────┐
-│  User Request   │
-│   用户请求      │
-└────────┬────────┘
-         │
-         ▼
-┌─────────────────┐
-│  before_model_  │
-│  resolve hook   │
-└────────┬────────┘
-         │
-         ▼
-┌─────────────────┐
-│  Plugin         │
-│  Intercepts     │
-│  插件拦截       │
-└────────┬────────┘
-         │
-         ▼
-┌─────────────────┐
-│  Python Bridge  │
-│  Analyzes       │
-│  Python 桥接分析│
-└────────┬────────┘
-         │
-         ▼
-┌─────────────────┐
-│  Gray Release   │
-│  Check          │
-│  灰度检查       │
-└────────┬────────┘
-         │
-         ▼
-┌─────────────────┐
-│  Model          │
-│  Selection      │
-│  模型选择       │
-└────────┬────────┘
-         │
-         ▼
-┌─────────────────┐
-│  Apply          │
-│  modelOverride  │
-│  应用模型覆盖   │
-└────────┬────────┘
-         │
-         ▼
-┌─────────────────┐
-│  AI Responds    │
-│  with Selected  │
-│  AI 用选定模型  │
-│  Model          │
-│  响应           │
-└─────────────────┘
+User Request → Plugin Intercept → Python Bridge → Gray Check → Model Select → Apply Override → AI Respond
 ```
 
 ---
@@ -224,17 +174,15 @@ tail -f ~/.openclaw/logs/gateway.log | grep ocnmps
 
 - `grayRatio: 0.3` means only 30% of requests are routed
 - Set `grayRatio: 1.0` to route all requests for testing
-- `grayRatio: 0.3` 表示只有 30% 的请求会被路由
-- 设置 `grayRatio: 1.0` 可路由所有请求进行测试
 
 ---
 
 ## 🔒 Security
 
-- ✅ No data collection | 不收集数据
-- ✅ No external API calls | 不调用外部 API
-- ✅ All processing local | 本地处理
-- ✅ No sensitive info | 无敏感信息
+- ✅ No data collection
+- ✅ No external API calls
+- ✅ All processing local
+- ✅ No sensitive info
 
 ---
 
@@ -242,29 +190,21 @@ tail -f ~/.openclaw/logs/gateway.log | grep ocnmps
 
 MIT License - Free to use, modify, and distribute.
 
-MIT 许可证 - 可自由使用、修改和分发。
+---
+
+**[⬆ Back to Top](#-ocnmps)**
 
 ---
 
-<p align="center">
-  <strong>Questions?</strong> Open an issue on GitHub
-</p>
+# 🇨🇳 中文
 
-<p align="center">
-  <em>Last updated: 2026-03-24</em>
-</p>
-
----
-
-## 📖 中文说明
-
-### OCNMPS 是什么？
+## 📖 OCNMPS 是什么？
 
 > **就像一个聪明的交通指挥员，引导不同的 AI 模型处理不同的任务。** 🚦
 >
 > OCNMPS 能根据你的任务类型，自动选择最合适的 AI 模型。
 
-### 快速示例
+### ✨ 快速示例
 
 | 你说 | 插件选择 | 原因 |
 |------|----------|------|
@@ -273,31 +213,104 @@ MIT 许可证 - 可自由使用、修改和分发。
 | "写篇长文章" | 📝 长文模型 | 最擅长写作 |
 | "用中文聊天" | 🇨🇳 中文模型 | 最擅长中文 |
 
-### 快速开始
+---
 
-1. **安装**: 复制文件到 `~/.openclaw/plugins/ocnmps-router/`
-2. **启用**: 编辑 `~/.openclaw/openclaw.json`
-3. **重启**: `openclaw gateway restart`
-4. **测试**: 使用上面的测试命令
+## 🚀 快速开始
 
-### 配置说明
+### 1️⃣ 安装
 
-编辑 `ocnmps_plugin_config.json`:
-- `enabled`: 启用/禁用
-- `grayRatio`: 路由比例 (0.3 = 30%)
-- `enabledIntents`: 启用的意图类型
+```bash
+# 克隆仓库
+git clone https://github.com/Colin1Xiao/OCNMPS.git
+cd OCNMPS
 
-### 模型映射
+# 复制到 OpenClaw 插件目录
+mkdir -p ~/.openclaw/plugins/ocnmps-router
+cp *.js *.py *.json ~/.openclaw/plugins/ocnmps-router/
+```
+
+### 2️⃣ 启用
+
+编辑 `~/.openclaw/openclaw.json`:
+
+```json
+{
+  "plugins": {
+    "entries": {
+      "ocnmps-router": {
+        "enabled": true
+      }
+    }
+  }
+}
+```
+
+### 3️⃣ 重启
+
+```bash
+openclaw gateway restart
+```
+
+### 4️⃣ 测试
+
+```bash
+echo '{"task": "写一个 Python 函数"}' | \
+  python3 ~/.openclaw/plugins/ocnmps-router/ocnmps_bridge_v2.py --json
+```
+
+**预期输出:**
+```json
+{
+  "gray_hit": true,
+  "intent": "CODE",
+  "recommended_model": "bailian/qwen3-coder-next"
+}
+```
+
+---
+
+## ⚙️ 配置说明
+
+文件：`~/.openclaw/plugins/ocnmps-router/ocnmps_plugin_config.json`
+
+```json
+{
+  "enabled": true,
+  "grayRatio": 0.3,
+  "enabledIntents": ["CODE", "REASON", "LONG", "CN"],
+  "modelMapping": {
+    "CODE": { "provider": "bailian", "model": "qwen3-coder-next" },
+    "REASON": { "provider": "xai", "model": "grok-4-1-fast-reasoning" },
+    "LONG": { "provider": "bailian", "model": "qwen3.5-plus" },
+    "CN": { "provider": "bailian", "model": "MiniMax-M2.5" },
+    "MAIN": { "provider": "bailian", "model": "kimi-k2.5" }
+  }
+}
+```
+
+### 📋 配置选项
+
+| 选项 | 说明 | 默认值 |
+|------|------|--------|
+| `enabled` | 启用/禁用插件 | `true` |
+| `grayRatio` | 路由比例 (0.3 = 30%) | `0.3` |
+| `enabledIntents` | 启用的意图类型 | 全部 |
+
+---
+
+## 🧠 模型选择
 
 | 意图 | 模型 | 适用场景 |
 |------|------|----------|
-| **CODE** | qwen3-coder-next | 编程开发 |
-| **REASON** | grok-4-1-fast-reasoning | 分析推理 |
-| **LONG** | qwen3.5-plus | 长文写作 |
-| **CN** | MiniMax-M2.5 | 中文对话 |
-| **MAIN** | kimi-k2.5 | 通用对话 |
+| **CODE** | `qwen3-coder-next` | 编程开发 |
+| **REASON** | `grok-4-1-fast-reasoning` | 分析推理 |
+| **LONG** | `qwen3.5-plus` | 长文写作 |
+| **CN** | `MiniMax-M2.5` | 中文对话 |
+| **MAIN** | `kimi-k2.5` | 通用对话 |
 
-### 性能指标
+---
+
+## 📊 性能指标
 
 | 指标 | 数值 | 状态 |
 |------|------|------|
@@ -306,20 +319,65 @@ MIT 许可证 - 可自由使用、修改和分发。
 | 📈 灰度命中率 | ~30% | ✅ 稳定 |
 | 🛡️ 可用性 | 100% | ✅ 可靠 |
 
-### 故障排除
+---
 
-**插件不工作？**
-1. 检查文件是否存在
-2. 检查 Python 版本
-3. 手动测试桥接脚本
-4. 查看日志
+## 🔧 工作原理
 
-**模型未切换？**
+```
+用户请求 → 插件拦截 → Python 桥接 → 灰度检查 → 模型选择 → 应用覆盖 → AI 响应
+```
+
+---
+
+## 🐛 故障排除
+
+### 插件不工作？
+
+```bash
+# 1. 检查文件是否存在
+ls ~/.openclaw/plugins/ocnmps-router/
+
+# 2. 检查 Python
+python3 --version
+
+# 3. 手动测试
+echo '{"task": "test"}' | \
+  python3 ~/.openclaw/plugins/ocnmps-router/ocnmps_bridge_v2.py --json
+
+# 4. 查看日志
+tail -f ~/.openclaw/logs/gateway.log | grep ocnmps
+```
+
+### 模型未切换？
+
 - `grayRatio: 0.3` 表示只有 30% 的请求会被路由
 - 设置 `grayRatio: 1.0` 可路由所有请求进行测试
 
 ---
 
-**有问题？** 在 GitHub 上开 issue
+## 🔒 安全
 
-**最后更新**: 2026-03-24
+- ✅ 不收集数据
+- ✅ 不调用外部 API
+- ✅ 本地处理
+- ✅ 无敏感信息
+
+---
+
+## 📄 许可证
+
+MIT 许可证 - 可自由使用、修改和分发。
+
+---
+
+**[⬆ 返回顶部](#-ocnmps)**
+
+---
+
+<p align="center">
+  <strong>🌐 GitHub:</strong> <a href="https://github.com/Colin1Xiao/OCNMPS">Colin1Xiao/OCNMPS</a>
+</p>
+
+<p align="center">
+  <em>Last updated: 2026-03-24</em>
+</p>
