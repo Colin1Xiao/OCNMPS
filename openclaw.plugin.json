@@ -1,0 +1,39 @@
+{
+  "id": "ocnmps-router",
+  "name": "OCNMPS Router",
+  "version": "1.1.0",
+  "description": "Model router plugin using OCNMPS bridge for intent-based model selection",
+  "extensionPoints": ["message:preprocessed", "session:beforeTurn"],
+  "configSchema": {
+    "type": "object",
+    "properties": {
+      "enabled": {
+        "type": "boolean",
+        "default": true,
+        "description": "Enable/disable the plugin"
+      },
+      "grayRatio": {
+        "type": "number",
+        "default": 0.3,
+        "minimum": 0,
+        "maximum": 1,
+        "description": "Gray release ratio (0-1)"
+      },
+      "enabledIntents": {
+        "type": "array",
+        "items": {
+          "type": "string",
+          "enum": ["CODE", "REASON", "LONG", "CN", "MAIN", "FAST"]
+        },
+        "default": ["CODE", "REASON", "LONG", "CN"],
+        "description": "Intents that trigger model routing"
+      },
+      "fallbackToDefault": {
+        "type": "boolean",
+        "default": true,
+        "description": "Fallback to default model on routing failure"
+      }
+    },
+    "additionalProperties": false
+  }
+}

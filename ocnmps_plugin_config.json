@@ -1,0 +1,23 @@
+{
+  "enabled": true,
+  "grayRatio": 1.0,
+  "logLevel": "info",
+  "fallbackToDefault": true,
+  "enabledIntents": ["CODE", "REASON", "LONG", "CN", "MAIN"],
+  "bridge": {
+    "timeoutMs": 5000,
+    "retryCount": 0
+  },
+  "modelMapping": {
+    "CODE": { "provider": "bailian", "model": "qwen3-coder-next" },
+    "REASON": { "provider": "xai", "model": "grok-4-1-fast-reasoning" },
+    "LONG": { "provider": "bailian", "model": "qwen3.5-plus" },
+    "CN": { "provider": "bailian", "model": "MiniMax-M2.5" },
+    "MAIN": { "provider": "bailian", "model": "kimi-k2.5" }
+  },
+  "notes": [
+    "grayRatio: 1.0 = 100% 的请求会走桥接路由 (测试模式)",
+    "enabledIntents: 所有意图都会触发模型切换",
+    "fallbackToDefault: 桥接失败时使用默认模型"
+  ]
+}
