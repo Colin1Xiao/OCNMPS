@@ -1,0 +1,34 @@
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+build/
+
+# Logs
+*.log
+
+# Config (local overrides)
+config/ocnmps_plugin_config.local.json
+
+# Runtime data
+data/
+audit/
+
+# Backups
+*.bak
+*.backup.*
+*.orig
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Test fixtures
+tests/fixtures/

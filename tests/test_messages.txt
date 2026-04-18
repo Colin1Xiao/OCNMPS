@@ -1,0 +1,17 @@
+# OCNMPS V3 测试消息
+# 发送时间：2026-04-03 03:36
+
+## 测试 1: CODE 意图
+Fix the import error in src/index.ts, ModuleNotFoundError: No module named 'requests'
+
+## 测试 2: REASON 意图
+为什么这个函数会返回 null？请详细解释原因。
+
+## 测试 3: LONG 意图
+Explain the architecture of this system in detail with examples and diagrams and comprehensive analysis
+
+## 测试 4: CN 意图
+帮我写一个 Python 脚本来处理 CSV 文件
+
+## 测试 5: MAIN 意图
+What is the weather today?

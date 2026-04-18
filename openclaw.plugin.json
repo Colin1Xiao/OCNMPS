@@ -1,0 +1,62 @@
+{
+  "id": "ocnmps-router",
+  "name": "OCNMPS Router",
+  "version": "1.1.0",
+  "description": "Model router plugin using OCNMPS bridge for intent-based model selection",
+  "main": "plugin.js",
+  "extensionPoints": [
+    "before_model_resolve"
+  ],
+  "configSchema": {
+    "type": "object",
+    "properties": {
+      "enabled": {
+        "type": "boolean",
+        "default": true,
+        "description": "Enable/disable the plugin"
+      },
+      "grayRatio": {
+        "type": "number",
+        "default": 0.3,
+        "minimum": 0,
+        "maximum": 1,
+        "description": "Gray release ratio (0-1)"
+      },
+      "enabledIntents": {
+        "type": "array",
+        "items": {
+          "type": "string",
+          "enum": [
+            "MAIN",
+            "CODE",
+            "CODE_PLUS",
+            "PATCH",
+            "DEBUG",
+            "REVIEW",
+            "TEST",
+            "REASON",
+            "LONG"
+          ]
+        },
+        "default": [
+          "MAIN",
+          "CODE",
+          "CODE_PLUS",
+          "PATCH",
+          "DEBUG",
+          "REVIEW",
+          "TEST",
+          "REASON",
+          "LONG"
+        ],
+        "description": "Primary intents that trigger model routing (9 intents, CN/FAST are tags not intents)"
+      },
+      "fallbackToDefault": {
+        "type": "boolean",
+        "default": true,
+        "description": "Fallback to default model on routing failure"
+      }
+    },
+    "additionalProperties": false
+  }
+}

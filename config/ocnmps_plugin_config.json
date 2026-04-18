@@ -1,0 +1,41 @@
+{
+  "enabled": true,
+  "grayRatio": 1.0,
+  "enabledIntents": [
+    "MAIN",
+    "CODE",
+    "CODE_PLUS",
+    "PATCH",
+    "DEBUG",
+    "REVIEW",
+    "TEST",
+    "REASON",
+    "LONG"
+  ],
+  "defaultModel": "bailian/qwen3.6-plus",
+  "modelMapping": {
+    "MAIN": "bailian/qwen3.6-plus",
+    "FAST": "bailian/qwen3-max-2026-01-23",
+    "CODE": "bailian/qwen3-coder-next",
+    "CODE_PLUS": "bailian/qwen3-coder-plus",
+    "PATCH": "xai/grok-code-fast-1",
+    "REASON": "xai/grok-4-1-fast-reasoning",
+    "REVIEW": "bailian/qwen3.6-plus",
+    "LONG": "bailian/qwen3.6-plus",
+    "CN": "bailian/MiniMax-M2.5",
+    "TEST": "bailian/qwen3-max-2026-01-23",
+    "DEBUG": "xai/grok-4-1-fast-reasoning"
+  },
+  "recognitionV1Enabled": false,
+  "recognitionV1Shadow": true,
+  "recognitionV1AffectsRouting": false,
+  "recognitionV1FailOpen": true,
+  "rolloutMode": "active",
+  "activeKeys": [
+    "summary|L1|technical",
+    "review|L2|technical",
+    "risks|L2|technical"
+  ],
+  "canaryKeys": [],
+  "policyVersion": "v1.0"
+}
