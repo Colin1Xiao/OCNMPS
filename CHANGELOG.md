@@ -1,43 +1,43 @@
-# Changelog
+# 更新日志
 
-All notable changes to OCNMPS will be documented in this file.
+所有对 OCNMPS 的重要更改都将在此文档中记录。
 
 ---
 
 ## [1.1.0] — 2026-04-18
 
-### Added
-- Phase 23: grayRatio 0.8 → 1.0 full deployment (PASSED)
-- Phase 21: Configuration governance (schema validation, diff detection, audit trail)
-- Phase 19: Runtime integration (Plugin V3, Gateway `before_model_resolve` hook)
-- Phase 18: Production hardening (canary rollout, continuous observation)
-- Phase 17: Auto-apply engine with snapshot and rollback
-- Phase 15–16: Operations automation (review mechanism, change proposals)
-- Strategy Registry productization (8 registered keys)
+### 新增功能
+- Phase 23：grayRatio 0.8 → 1.0 全量部署（通过）
+- Phase 21：配置治理（模式验证、差异检测、审计跟踪）
+- Phase 19：运行时集成（插件 V3、网关 `before_model_resolve` 钩子）
+- Phase 18：生产强化（金丝雀发布、持续观察）
+- Phase 17：自动应用引擎，带快照和回滚
+- Phase 15–16：运营自动化（复审机制、变更提案）
+- 策略注册表产品化（8 个注册键）
 
-### Changed
-- Internal message bypass (system messages no longer pollute routing stats)
-- Config source: local file as single source of truth
-- Intent classification: 11 intents + 2 auxiliary tags
-- Recognition v1 sidecar disabled (not used in production)
+### 更改内容
+- 内部消息绕过（系统消息不再污染路由统计）
+- 配置源：本地文件作为单一真实源
+- 意图分类：11 个意图 + 2 个辅助标签
+- 识别 v1 侧边栏已禁用（生产环境中未使用）
 
-### Fixed
-- Post-check verifier timeout (overdue 27.6% → 0%)
-- Strategy Bridge partial key matching
-- Config chain consistency
+### 修复问题
+- 后置检查验证器超时（逾期 27.6% → 0%）
+- 策略桥部分键匹配
+- 配置链一致性
 
-### Removed
-- Python Bridge (migrated to TypeScript Runtime V3)
-- classifier.js (replaced by intent recognition)
+### 移除内容
+- Python 桥（迁移至 TypeScript 运行时 V3）
+- classifier.js（替换为意图识别）
 
 ---
 
 ## [1.0.0] — 2026-03-15
 
-### Initial Release
-- Intent classification (9 intents)
-- Model mapping (multi-provider)
-- Gray rollout system (10% → 50% → 100%)
-- Routing Policy V2 (28-model capability profiles)
-- Child spawn adapter
-- L3 strategy templates (6 keys)
+### 初始发布
+- 意图分类（9 个意图）
+- 模型映射（多提供商）
+- 灰度发布系统（10% → 50% → 100%）
+- 路由策略 V2（28 模型能力画像）
+- 子进程适配器
+- L3 策略模板（6 个键）

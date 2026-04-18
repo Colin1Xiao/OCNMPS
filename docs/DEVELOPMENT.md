@@ -1,185 +1,185 @@
-# OCNMPS 开发历史 / Development History
+# OCNMPS 开发历史
 
-**Project:** OCNMPS (OpenClaw Model Routing & Policy System)  
-**Timeline:** 2026-03 → 2026-04  
-**Status:** Production — Phase 23 Complete ✅
-
----
-
-## Phase 1–8: Infrastructure Foundation
-
-| Phase | Description | Key Deliverable |
-|-------|-------------|-----------------|
-| 1–2 | Intent classification skeleton | Basic intent → model mapping |
-| 3–4 | Gray rollout system | 10% observation → 50% → 100% |
-| 5 | Gray 100% deployment | Daily reports, observation complete |
-| 6–7 | Routing Policy V2 | 28-model capability profiles, child spawn adapter |
-| **8** | **Full routing + L3 templates** | **6 L3 templates, resilience validation** ✅ |
+**项目：** OCNMPS (OpenClaw Model Routing & Policy System)  
+**时间线：** 2026-03 → 2026-04  
+**状态：** 生产就绪 — Phase 23 完成 ✅
 
 ---
 
-## Phase 9: Self-Learning Routing
+## Phase 1–8: 基础设施构建
 
-| Sub-Phase | Description |
-|-----------|-------------|
-| 9.0 | Self-learning infrastructure |
-| 9.1 | Learning validation |
-| 9.2 | Learning scale-up + Route competition |
-| 9.3 | Sprint window 50/50 + Override first-response mechanism |
-| 9.4 | Complexity-aware routing |
-
-**Key achievement:** Introduced route competition and override gates, allowing the system to learn from real routing outcomes.
+| Phase | 描述 | 核心交付 |
+|-------|------|----------|
+| 1–2 | 意图分类骨架 | 基础 intent → 模型映射 |
+| 3–4 | 灰度发布系统 | 10% 观察 → 50% → 100% |
+| 5 | 灰度 100% 部署 | 每日报告，观察完成 |
+| 6–7 | 路由策略 V2 | 28 模型能力画像，子进程适配器 |
+| **8** | **全量路由 + L3 模板** | **6 个 L3 模板，韧性验证** ✅ |
 
 ---
 
-## Phase 10: Strategy Engine Productization
+## Phase 9: 自学习路由
 
-| Sub-Phase | Description |
-|-----------|-------------|
-| 10.0 | Strategy engine productization + partial key fix |
-| 10.1 | Learning chain validation + threshold calibration (62→50) |
-| 10.2 | Strategy Registry expanded to 5 keys + L1 skeleton |
-| 10.3-R1 | L2 coverage pushed to 86% |
-| 10.3-R2 | L3 review productized, L3 coverage 50% |
-| 10.3-R3 | L3 risks productized, L3 coverage 67% |
-| 10.3-R4 | verify\|L3\|abstract_strategy audit complete |
-| 10.4 | Strategy boundary consolidation |
-| 10.5 | Strategy Registry productization governance |
-| 10.6 | verify type layering prototype |
-| 10.7 | verify\|L3 subtype-aware routing |
+| 子 Phase | 描述 |
+|----------|------|
+| 9.0 | 自学习基础设施 |
+| 9.1 | 学习验证 |
+| 9.2 | 学习放量 + 路由竞争 |
+| 9.3 | 冲刺窗口 50/50 + 覆盖第一响应机制 |
+| 9.4 | 复杂度感知路由 |
 
-**Key achievement:** Strategy Registry became the central source of truth for routing policies.
+**核心成就：** 引入路由竞争和覆盖门控，允许系统从真实路由结果中学习。
 
 ---
 
-## Phase 11–14: Strategy Deepening
+## Phase 10: 策略引擎产品化
 
-| Phase | Description |
-|-------|-------------|
-| 11 | Conditional Strategy Expansion (complexity + subtype) |
-| 12 | Strategy DSL & Governance Deepening |
-| 13-R1 | L2 full coverage (patch\|L2\|technical → PATCH) |
+| 子 Phase | 描述 |
+|----------|------|
+| 10.0 | 策略引擎产品化 + 部分键修复 |
+| 10.1 | 学习链验证 + 阈值校准 (62→50) |
+| 10.2 | 策略注册表扩展到 5 个键 + L1 骨架 |
+| 10.3-R1 | L2 覆盖率提升到 86% |
+| 10.3-R2 | L3 审查产品化，L3 覆盖率 50% |
+| 10.3-R3 | L3 风险产品化，L3 覆盖率 67% |
+| 10.3-R4 | verify\|L3\|abstract_strategy 审计完成 |
+| 10.4 | 策略边界巩固 |
+| 10.5 | 策略注册表产品化治理 |
+| 10.6 | verify 类型分层原型 |
+| 10.7 | verify\|L3 子类型感知路由 |
+
+**核心成就：** 策略注册表成为路由策略的中心真实源。
+
+---
+
+## Phase 11–14: 策略深化
+
+| Phase | 描述 |
+|-------|------|
+| 11 | 条件策略扩展 (复杂度 + 子类型) |
+| 12 | 策略 DSL & 治理深化 |
+| 13-R1 | L2 全覆盖 (patch\|L2\|technical → PATCH) |
 | 13-R2 | extract\|L3\|abstract_strategy → FAST |
-| 13-R3 | patch\|L3\|abstract_strategy audit & productization |
-| 14-P1+P2 | Full panel + risks\|L2 fileCount dimension |
-| 14-P3 | v1.1 freeze observation report |
-| 14-P4 | risks\|L2\|technical v1.1 accepted |
-| 14-P5 | verify\|L3 subtype review — all 3 subtypes stable |
+| 13-R3 | patch\|L3\|abstract_strategy 审计与产品化 |
+| 14-P1+P2 | 全量面板 + risks\|L2 fileCount 维度 |
+| 14-P3 | v1.1 冻结观察报告 |
+| 14-P4 | risks\|L2\|technical v1.1 已接受 |
+| 14-P5 | verify\|L3 子类型复盘 — 全部 3 个子类型稳定 |
 
 ---
 
-## Phase 15–16: Operations Automation
+## Phase 15–16: 运营自动化
 
-| Phase | Description |
-|-------|-------------|
-| 15.2 | Strategy review mechanism |
-| 15.3 | Change proposal mechanism |
-| 16.1 | Strategy effectiveness baseline panel |
-| 16.2 | Anomaly detection rules |
-| 16.3 | Auto-proposal candidate generation |
-| 16.4 | **Operations automation closure report** |
-
----
-
-## Phase 17: Auto-Apply Engine
-
-| Phase | Description |
-|-------|-------------|
-| 17.1 | Candidate-to-draft proposal generation |
-| 17.2 | Auto-proposal draft generator + auto-review rules |
-| 17.3 | **Auto-apply engine with snapshot and rollback** |
-
-**Key achievement:** Strategies could now be automatically applied with safety guarantees.
+| Phase | 描述 |
+|-------|------|
+| 15.2 | 策略复审机制 |
+| 15.3 | 变更提案机制 |
+| 16.1 | 策略效果基准面板 |
+| 16.2 | 异常检测规则 |
+| 16.3 | 自动提案候选生成 |
+| 16.4 | **运营自动化主线收口报告** |
 
 ---
 
-## Phase 18: Production Hardening
+## Phase 17: 自动 Apply 引擎
 
-| Phase | Description |
-|-------|-------------|
-| 18.1 | Production hardening — real apply with feature flag + canary + audit |
-| 18.2-A | Canary rollout for verify\|L3 — passed ✅ |
-| 18.2-B | Low-frequency auto canary — passed ✅ |
-| 18.2-C | **Continuous observation — stable** ✅ |
+| Phase | 描述 |
+|-------|------|
+| 17.1 | 候选到草稿提案生成 |
+| 17.2 | 自动提案草稿生成器 + 自动复审规则 |
+| 17.3 | **带快照和回滚的自动 Apply 引擎** |
 
----
-
-## Phase 19: Runtime Integration
-
-**Plugin V3 migration** — Python Bridge → TypeScript Runtime
-
-- Gateway `before_model_resolve` hook integration
-- Post-check deferred verification (19.4-C)
-- Config governance foundation
+**核心成就：** 策略现在可以自动应用，带安全保证。
 
 ---
 
-## Phase 20: Canary Expansion
+## Phase 18: 生产强化
 
-- Canary expansion to additional strategies
-- Stability freeze report
-- Production readiness validation
-
----
-
-## Phase 21: Configuration Governance
-
-| Phase | Description |
-|-------|-------------|
-| 21.1 | Config source management (local file as single source of truth) |
-| 21.2 | Config schema validation |
-| 21.3 | Config diff detection (local vs gateway vs effective) |
-| 21.4 | **Config change audit** (JSONL log + Dashboard) |
+| Phase | 描述 |
+|-------|------|
+| 18.1 | 生产强化 — 带功能标志的真实 Apply + 金丝雀 + 审计 |
+| 18.2-A | verify\|L3 的金丝雀发布 — 通过 ✅ |
+| 18.2-B | 低频自动金丝雀 — 通过 ✅ |
+| 18.2-C | **持续观察 — 稳定** ✅ |
 
 ---
 
-## Phase 22: Sample Execution
+## Phase 19: 运行时集成
 
-- Sample execution framework
-- Active first batch execution
-- Observation board + fusion report
+**插件 V3 迁移** — Python 桥 → TypeScript 运行时
+
+- 网关 `before_model_resolve` 钩子集成
+- 后置检查延迟验证 (19.4-C)
+- 配置治理基础
 
 ---
 
-## Phase 23: Full Deployment
+## Phase 20: 金丝雀扩张
 
-| Phase | Description | Result |
-|-------|-------------|--------|
-| 23.1 | Post-Check Verifier fix | overdue 27.6%→0%, P90 855s→0 ✅ |
-| **23.2** | **grayRatio 0.8→1.0 full deployment** | **PASSED WITH MINOR WATCH ITEM** ✅ |
+- 金丝雀扩张到附加策略
+- 稳定冻结报告
+- 生产就绪验证
 
-### Phase 23.2-A Final Metrics
+---
 
-| Metric | Value |
-|--------|-------|
+## Phase 21: 配置治理
+
+| Phase | 描述 |
+|-------|------|
+| 21.1 | 配置源管理 (本地文件作为单一真实源) |
+| 21.2 | 配置模式验证 |
+| 21.3 | 配置差异检测 (本地 vs 网关 vs 有效) |
+| 21.4 | **配置变更审计** (JSONL 日志 + 面板) |
+
+---
+
+## Phase 22: 样本执行
+
+- 样本执行框架
+- 活跃首批执行
+- 观察板 + 融合报告
+
+---
+
+## Phase 23: 全量部署
+
+| Phase | 描述 | 结果 |
+|-------|------|--------|
+| 23.1 | 后置检查验证器修复 | 逾期 27.6%→0%，P90 855s→0 ✅ |
+| **23.2** | **grayRatio 0.8→1.0 全量部署** | **带次要观察项通过** ✅ |
+
+### Phase 23.2-A 最终指标
+
+| 指标 | 值 |
+|------|-----|
 | applied_count | 2 |
 | verifier_pass | 3 |
 | verifier_fail | 0 |
 | rollback | 0 |
 | pending | 0 |
 | timeout | 0 |
-| borderline_convergence | 1 (446s, not recurred) |
+| borderline_convergence | 1 (446s, 未复现) |
 
 ---
 
-## Current State (2026-04-18)
+## 当前状态 (2026-04-18)
 
-| Component | Status |
-|-----------|--------|
-| Version | 1.1.0 |
-| grayRatio | 1.0 (full) |
-| Intents | 11 active |
-| Strategy Keys | 8 registered |
-| Rollout Mode | active |
-| Phase 23 | Complete |
-| Status | **BAU (Business As Usual)** |
+| 组件 | 状态 |
+|------|------|
+| 版本 | 1.1.0 |
+| grayRatio | 1.0 (全量) |
+| 意图数 | 11 个活跃 |
+| 策略键 | 8 个注册 |
+| 发布模式 | active |
+| Phase 23 | 完成 |
+| 状态 | **BAU (Business As Usual)** |
 
 ---
 
-## Lessons Learned
+## 经验教训
 
-1. **Config source must be single** — multi-source causes drift
-2. **Internal messages must bypass** — system messages pollute routing stats
-3. **Gray rollout must be gradual** — 10%→50%→100% with observation windows
-4. **Post-check is essential** — applied strategies need verification
-5. **Audit trail is non-negotiable** — every config change must be logged
+1. **配置源必须单一** — 多源导致漂移
+2. **内部消息必须绕过** — 系统消息污染路由统计
+3. **灰度发布必须渐进** — 10%→50%→100% 带观察窗口
+4. **后置检查是必需的** — 应用策略需要验证
+5. **审计跟踪是不可协商的** — 每次配置变更必须记录

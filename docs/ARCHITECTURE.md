@@ -1,35 +1,35 @@
-# OCNMPS Architecture
+# OCNMPS 架构
 
-**Version:** 1.1.0  
-**Date:** 2026-04-18
+**版本：** 1.1.0  
+**日期：** 2026-04-18
 
 ---
 
-## System Overview
+## 系统概览
 
-OCNMPS operates as an OpenClaw Gateway plugin, intercepting model resolution requests before they reach the default model selector.
+OCNMPS 作为 OpenClaw 网关插件运行，在模型选择前拦截每个请求。
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
-│                     OpenClaw Gateway                        │
+│                     OpenClaw 网关                          │
 │                                                             │
 │  ┌─────────────────┐    ┌─────────────────────────────┐    │
-│  │  User Message   │───▶│  before_model_resolve Hook  │    │
+│  │  用户消息       │───▶│  before_model_resolve 钩子 │    │
 │  └─────────────────┘    └──────────────┬──────────────┘    │
 │                                        │                    │
 │                           ┌────────────▼─────────────┐     │
-│                           │   OCNMPS Plugin (V3)     │     │
+│                           │   OCNMPS 插件 (V3)       │     │
 │                           │                          │     │
-│                           │  1. Internal Msg Filter  │     │
-│                           │  2. Intent Classification │     │
-│                           │  3. Gray Rollout Gate    │     │
-│                           │  4. Strategy Bridge      │     │
-│                           │  5. Model Resolution     │     │
-│                           │  6. Fallback Chain       │     │
+│                           │  1. 内部消息过滤         │     │
+│                           │  2. 意图分类             │     │
+│                           │  3. 灰度发布门控         │     │
+│                           │  4. 策略桥               │     │
+│                           │  5. 模型解析             │     │
+│                           │  6. 降级链路             │     │
 │                           └────────────┬─────────────┘     │
 │                                        │                    │
 │                           ┌────────────▼─────────────┐     │
-│                           │   Selected Model          │     │
+│                           │   选定模型              │     │
 │                           └──────────────────────────┘     │
 │                                                             │
 └─────────────────────────────────────────────────────────────┘
@@ -37,113 +37,113 @@ OCNMPS operates as an OpenClaw Gateway plugin, intercepting model resolution req
 
 ---
 
-## Component Map
+## 组件地图
 
-### plugin.js — Plugin Entry Point
+### plugin.js — 插件入口点
 
-| Responsibility | Description |
-|----------------|-------------|
-| Gateway integration | Registers `before_model_resolve` hook |
-| Config loading | Loads `ocnmps_plugin_config.json` as single source of truth |
-| Config governance | Schema validation (Phase 21.2), diff detection (21.3), audit trail (21.4) |
-| Lifecycle management | Plugin init, reload, shutdown |
-| CLI commands | `stats`, `history`, `verify`, `set-gray` |
+| 职责 | 说明 |
+|------|------|
+| 网关集成 | 注册 `before_model_resolve` 钩子 |
+| 配置加载 | 加载 `ocnmps_plugin_config.json` 作为单一真实源 |
+| 配置治理 | 模式验证（Phase 21.2）、差异检测（21.3）、审计跟踪（21.4） |
+| 生命周期管理 | 插件初始化、重载、关闭 |
+| CLI 命令 | `stats`、`history`、`verify`、`set-gray` |
 
-### ocnmps_core.js — Core Routing Engine
+### ocnmps_core.js — 核心路由引擎
 
-| Responsibility | Description |
-|----------------|-------------|
-| Intent classification | Classifies prompt into 11 intents + 2 tags |
-| Gray calculation | Consistent hash-based traffic splitting |
-| Model mapping | Intent → model resolution |
-| Fallback chain | Degraded routing on primary failure |
-| Stats collection | Routing metrics (user messages only) |
-| Internal message filtering | System messages bypass routing |
+| 职责 | 说明 |
+|------|------|
+| 意图分类 | 从提示中分类为 11 个意图 + 2 个标签 |
+| 灰度计算 | 一致性哈希流量分割 |
+| 模型映射 | 意图 → 模型解析 |
+| 降级链 | 主模型失败时的降级路由 |
+| 统计收集 | 路由指标（仅用户消息） |
+| 内部消息过滤 | 系统消息绕过路由 |
 
-### strategy_bridge.js — Strategy Matching
+### strategy_bridge.js — 策略匹配
 
-| Responsibility | Description |
-|----------------|-------------|
-| Strategy matching | Matches prompts against strategy registry |
-| Registry loading | Reads `strategy_registry.json` |
-| Rollout gate | shadow / canary / active modes |
-| Post-check | Deferred verification after apply |
-| Rollback | Automatic rollback on failure |
+| 职责 | 说明 |
+|------|------|
+| 策略匹配 | 将提示与策略注册表匹配 |
+| 注册表加载 | 读取 `strategy_registry.json` |
+| 发布门控 | shadow / canary / active 模式 |
+| 后置检查 | 应用后的延迟验证 |
+| 回滚 | 失败时自动回滚 |
 
-### recognizer/ — Intent Recognition
+### recognizer/ — 意图识别
 
-| File | Description |
-|------|-------------|
-| `recognize.js` | Primary intent recognition from prompt text |
-| `recognition_compare.js` | Sidecar comparison (disabled in production) |
+| 文件 | 说明 |
+|------|------|
+| `recognize.js` | 主意图识别从提示文本 |
+| `recognition_compare.js` | 侧边栏比较（生产环境中禁用） |
 
-### contracts/ — Type Contracts
+### contracts/ — 类型合约
 
-| File | Description |
-|------|-------------|
-| `recognition_result.js` | Recognition result schema |
-| `recognition_comparison.js` | Comparison result schema |
-
----
-
-## Data Flow
-
-```
-1. User sends message
-   │
-2. Gateway triggers before_model_resolve
-   │
-3. OCNMPS receives (prompt, sessionKey, metadata)
-   │
-4. Internal message check → bypass if system message
-   │
-5. Intent classification (recognize.js)
-   │   Output: { intent, tags[] }
-   │
-6. Gray calculation (hash-based)
-   │   Output: grayHit = true/false
-   │
-7. If grayHit = false → return default model
-   │
-8. Strategy Bridge match (strategy_bridge.js)
-   │   Output: { matched, strategyKey, selectedModel }
-   │
-9. If matched → apply strategy (canary check, post-check scheduling)
-   │
-10. If not matched → legacy fallback
-    │
-11. Return { model, verificationOk }
-    │
-12. Gateway uses resolved model
-```
+| 文件 | 说明 |
+|------|------|
+| `recognition_result.js` | 识别结果模式 |
+| `recognition_comparison.js` | 比较结果模式 |
 
 ---
 
-## Configuration Hierarchy
+## 数据流
 
-| Source | Role | Priority |
+```
+1. 用户发送消息
+   │
+2. 网关触发 before_model_resolve
+   │
+3. OCNMPS 接收 (prompt, sessionKey, metadata)
+   │
+4. 内部消息检查 → 系统消息绕过
+   │
+5. 意图分类 (recognize.js)
+   │   输出: { intent, tags[] }
+   │
+6. 灰度计算 (哈希)
+   │   输出: grayHit = true/false
+   │
+7. 如果 grayHit = false → 返回默认模型
+   │
+8. 策略桥匹配 (strategy_bridge.js)
+   │   输出: { matched, strategyKey, selectedModel }
+   │
+9. 如果匹配 → 应用策略 (金丝雀检查, 后置检查安排)
+   │
+10. 如果未匹配 → 传统降级
+    │
+11. 返回 { model, verificationOk }
+    │
+12. 网关使用解析的模型
+```
+
+---
+
+## 配置层次
+
+| 源 | 角色 | 优先级 |
 |--------|------|----------|
-| `ocnmps_plugin_config.json` | Single source of truth | Primary |
-| `openclaw.json` plugins.entries | Gateway enable/disable | Override |
-| `strategy_registry.json` | Strategy rules | Runtime |
+| `ocnmps_plugin_config.json` | 单一真实源 | 主要 |
+| `openclaw.json` plugins.entries | 网关启用/禁用 | 覆盖 |
+| `strategy_registry.json` | 策略规则 | 运行时 |
 
 ---
 
-## Rollout Modes
+## 发布模式
 
-| Mode | Behavior |
+| 模式 | 行为 |
 |------|----------|
-| `shadow` | Routes calculated but not applied (observation) |
-| `canary` | Selected strategies apply gradually |
-| `active` | All strategies apply to matched traffic |
+| `shadow` | 计算路由但不应用（观察） |
+| `canary` | 选定策略逐渐应用 |
+| `active` | 所有策略应用于匹配流量 |
 
 ---
 
-## Safety Mechanisms
+## 安全机制
 
-1. **Internal message bypass** — system messages don't affect routing stats
-2. **Gray rollout** — traffic split prevents blast radius
-3. **Canary deployment** — per-strategy gradual rollout
-4. **Post-check verification** — validates after apply
-5. **Automatic rollback** — on post-check failure
-6. **Config audit** — every change logged with diff
+1. **内部消息绕过** — 系统消息不影响路由统计
+2. **灰度发布** — 流量分割防止爆炸半径
+3. **金丝雀部署** — 按策略渐进发布
+4. **后置检查验证** — 应用后验证
+5. **自动回滚** — 后置检查失败时
+6. **配置审计** — 每次变更记录差异
